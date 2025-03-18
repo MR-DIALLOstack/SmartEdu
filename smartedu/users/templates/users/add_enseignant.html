@@ -1,0 +1,15 @@
+{% load static %}
+{% extends "base.html" %}
+
+{% block title %}Ajouter un Enseignant{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center">Ajouter un Enseignant</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success w-100">Ajouter</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}Accueil - SmartEdu{% endblock %}
+
+{% block content %}
+<header class="bg-light text-center py-5">
+    <h1 class="fw-bold">Bienvenue sur SmartEdu</h1>
+    <p class="lead">Une solution innovante pour la gestion des établissements pédagogiques.</p>
+    <a href="{% url 'register' %}" class="btn btn-primary btn-lg">Commencer</a>
+</header>
+
+<section class="container my-5">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Gestion des enseignants</h5>
+                    <p class="card-text">Ajoutez et gérez facilement vos enseignants.</p>
+                    <a href="{% url 'list_enseignants' %}" class="btn btn-outline-primary">Voir plus</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Gestion des élèves</h5>
+                    <p class="card-text">Suivez les inscriptions et les performances des élèves.</p>
+                    <a href="{% url 'list_eleves' %}" class="btn btn-outline-primary">Voir plus</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Gestion des parents</h5>
+                    <p class="card-text">Permettez aux parents de suivre la scolarité de leurs enfants.</p>
+                    <a href="{% url 'list_parents' %}" class="btn btn-outline-primary">Voir plus</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

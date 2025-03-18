@@ -12,7 +12,7 @@ class CustomUserAdmin(UserAdmin):
         ('Permissions', {'fields': ('is_active', 'is_staff', 'is_admin')}),
     )
     add_fieldsets = (
-        (None, {'fields': ('email', 'nom', 'prenom', 'role', 'password1', 'password2')}),
+        (None, {'fields': ('email', 'nom', 'prenom', 'telephone', 'role', 'password1', 'password2')}),
     )
     search_fields = ('email', 'nom', 'prenom')
     ordering = ('email',)

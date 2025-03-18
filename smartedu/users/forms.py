@@ -4,7 +4,6 @@ from .models import User, Etablissement
 class AdminSignupForm(forms.ModelForm):
     etablissement_nom = forms.CharField(max_length=100)
     etablissement_adresse = forms.CharField(widget=forms.Textarea)
-    etablissement_telephone = forms.CharField(max_length=15)
     etablissement_email = forms.EmailField()
 
     class Meta:
@@ -14,6 +13,7 @@ class AdminSignupForm(forms.ModelForm):
 
     def save(self, commit=True):
         user = super().save(commit=False)
+        user.set_password(self.cleaned_data["password"])
         user.role = 'admin'
         user.is_admin = True
         user.is_staff = True
@@ -27,6 +27,16 @@ class AdminSignupForm(forms.ModelForm):
                 directeur=user
             )
         return user
+
+class LoginForm(forms.Form):
+    email = forms.EmailField(
+        label="Adresse e-mail",
+        widget=forms.EmailInput(attrs={"class": "form-control", "placeholder": "Votre email"})
+    )
+    password = forms.CharField(
+        label="Mot de passe",
+        widget=forms.PasswordInput(attrs={"class": "form-control", "placeholder": "Votre mot de passe"})
+    )
 
 class EleveSignupForm(forms.ModelForm):
     class Meta:
@@ -44,7 +54,7 @@ class EleveSignupForm(forms.ModelForm):
 class EnseignantSignupForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['nom', 'prenom', 'email', 'adresse', 'telephone', 'password']
+        fields = ['nom', 'prenom', 'email', 'adresse', 'password']
         widgets = {'password': forms.PasswordInput()}
 
     def save(self, commit=True):
@@ -57,7 +67,7 @@ class EnseignantSignupForm(forms.ModelForm):
 class ParentSignupForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['nom', 'prenom', 'email', 'adresse', 'telephone', 'password']
+        fields = ['nom', 'prenom', 'email', 'adresse', 'password']
         widgets = {'password': forms.PasswordInput()}
 
     def save(self, commit=True):

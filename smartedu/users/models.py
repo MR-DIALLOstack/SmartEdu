@@ -33,7 +33,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     role = models.CharField(max_length=15, choices=ROLE_CHOICES)
     date_naissance = models.DateField(null=True, blank=True)
     adresse = models.TextField(null=True, blank=True)
-    telephone = models.CharField(max_length=15, unique=True)
+    telephone = models.CharField(max_length=15, blank=True, null=True)
+
     
     # Champs spécifiques à l'administration Django
     is_active = models.BooleanField(default=True)
